@@ -42,7 +42,7 @@ describe('Profile Menu Functionality', async () => {
          }
       })
 
-      it('Should show homepage when provide valid username and password', async () => {
+      it('Should show homepage when provide username and password fields with the ones that exist', async () => {
          runBefore = true
          runAfter = false
 
