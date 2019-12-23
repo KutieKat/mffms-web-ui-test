@@ -1,0 +1,29 @@
+{
+   "name": "mffms-web-ui-test",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "mocha --timeout 0  ./test/bootstrap.js --recursive test --reporter mochawesome"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/KutieKat/mffms-web-ui-test.git"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/KutieKat/mffms-web-ui-test/issues"
+   },
+   "homepage": "https://github.com/KutieKat/mffms-web-ui-test#readme",
+   "dependencies": {
+      "chai": "^4.2.0",
+      "express": "^4.17.1",
+      "mocha": "^6.2.2",
+      "mochawesome": "^4.1.0",
+      "node-cmd": "^3.0.0",
+      "opn": "^6.0.0",
+      "puppeteer": "^2.0.0"
+   }
+}
