@@ -140,7 +140,7 @@ describe('Settings Management Functionality', async () => {
                phoneElem,
                faxElem
             ])
-         ).to.not.be.null
+         ).to.be.true
       })
 
       it.skip('Should limit a minimum of 4 characters for the name field', async () => {
