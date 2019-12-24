@@ -39,8 +39,10 @@ describe('Settings Management Functionality', async () => {
          await signInButtonElem.click()
          await page.waitFor(3000)
 
-         const pageTitleElem = await page.evaluate(
-            () => document.querySelector('.main-header__title').innerText
+         const pageTitleElem = await attr(
+            page,
+            '.main-header__title',
+            'innerText'
          )
          expect(pageTitleElem).to.equal('MFFMS')
       })
