@@ -193,6 +193,14 @@ describe('Settings Management Functionality', async () => {
          expect(maxChars).to.equal(255)
       })
 
+      it.skip('Should be a textarea for the address field', async () => {
+         expect(true).to.be.true
+      })
+
+      it.skip('Should be a textarea for the address on page field', async () => {
+         expect(true).to.be.true
+      })
+
       it.skip('Should already have information inside each input on initial load', async () => {
          dashboardRunBefore = true
          dashboardRunAfter = false
