@@ -115,10 +115,6 @@ describe('Statistics Charts Functionality', async () => {
          expect(true).to.be.true
       })
 
-      it('Should save file to computer when select the `XLSX` option inside the export reports popup', async () => {
-         expect(true).to.be.true
-      })
-
       it('Should show the print dialog when select the `PDF` option inside the export reports popup', async () => {
          expect(true).to.be.true
       })
@@ -127,31 +123,63 @@ describe('Statistics Charts Functionality', async () => {
          expect(true).to.be.true
       })
 
-      it('Should change date range to all time when click the `All time` tab', async () => {
+      it('Should change the current date range to all time when click the `All time` tab', async () => {
          expect(true).to.be.true
       })
 
-      it('Should change date range to today when click the `Today` tab', async () => {
+      it('Should hide the `Change date range` button when click the `All time` tab', async () => {
          expect(true).to.be.true
       })
 
-      it('Should change date range to the current week when click the `This week` tab', async () => {
+      it("Should change the current date range to today's when click the `Today` tab", async () => {
          expect(true).to.be.true
       })
 
-      it('Should change date range to the current month when click the `This month` tab', async () => {
+      it('Should hide the `Change date range` button when click the `Today` tab', async () => {
          expect(true).to.be.true
       })
 
-      it('Should change date range to the current quarter when click the `This quarter` tab', async () => {
+      it("Should change the current date range to the current week's when click the `This week` tab", async () => {
          expect(true).to.be.true
       })
 
-      it('Should change date range to the current year when click the `This year` tab', async () => {
+      it('Should hide the `Change date range` button when click the `This week` tab', async () => {
          expect(true).to.be.true
       })
 
-      it('Should show the date range picker popup when click the `Optional` tab', async () => {
+      it("Should change the current date range to the current month's when click the `This month` tab", async () => {
+         expect(true).to.be.true
+      })
+
+      it('Should hide the `Change date range` button when click the `This month` tab', async () => {
+         expect(true).to.be.true
+      })
+
+      it("Should change the current date range to the current quarter's when click the `This quarter` tab", async () => {
+         expect(true).to.be.true
+      })
+
+      it('Should hide the `Change date range` button when click the `This quarter` tab', async () => {
+         expect(true).to.be.true
+      })
+
+      it("Should change the current date range to the current year's when click the `This year` tab", async () => {
+         expect(true).to.be.true
+      })
+
+      it('Should hide the `Change date range` button when click the `This year` tab', async () => {
+         expect(true).to.be.true
+      })
+
+      it("Should change the current date range to today's when click the `Optional` tab", async () => {
+         expect(true).to.be.true
+      })
+
+      it('Should show the `Change date range` button when click the `Optional` tab', async () => {
+         expect(true).to.be.true
+      })
+
+      it('Should show the date range picker popup when click the `Change date range` button', async () => {
          expect(true).to.be.true
       })
 
