@@ -12,6 +12,7 @@ describe.skip('Sign In Functionality', async () => {
    const username = '.form-group:nth-child(2) > .form-input-outline'
    const password = '.form-group:nth-child(3) > .form-input-outline'
    const signInButton = '.login-button'
+   const errors = '.section__alert'
 
    // Elements
    let usernameElem
@@ -85,7 +86,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.not.be.null
    })
@@ -115,7 +115,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.not.be.null
    })
@@ -129,7 +128,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.not.be.null
    })
@@ -143,7 +141,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.not.be.null
    })
@@ -157,7 +154,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.not.be.null
    })
@@ -171,7 +167,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.be.null
    })
@@ -185,7 +180,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.be.null
    })
@@ -199,7 +193,6 @@ describe.skip('Sign In Functionality', async () => {
       await signInButtonElem.click()
       await page.waitFor(3000)
 
-      const errors = '.section__alert'
       errorsElem = await page.$(errors)
       expect(errorsElem).to.be.null
    })
