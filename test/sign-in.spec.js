@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-import { clear, notAllNull, attr } from '../utils'
+const { clear, notAllNull, attr } = require('../utils')
 
 describe.skip('Sign In Functionality', async () => {
    let page

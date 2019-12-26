@@ -2,13 +2,13 @@ const { expect } = require('chai')
 const { clear, attr, notAllNull, notAllEmpty } = require('../utils')
 const { USERNAME, PASSWORD } = require('../constants/credentials')
 
-describe('Settings Management Functionality', async () => {
+describe.skip('Settings Management Functionality', async () => {
    let page
 
    before(async () => {
       page = await browser.newPage()
       await page.goto('http://localhost:3000')
-      await page.setViewport({ width: 640, height: 480 })
+      await page.setViewport({ width: 720, height: 480 })
    })
 
    after(async () => {
