@@ -1,9 +1,9 @@
 const { expect } = require('chai')
-const { clear, attr, notAllNull, notAllEmpty } = require('../utils')
+const { clear, attr, notAllNull, notAllEmpty, allTrue } = require('../utils')
 const { USERNAME, PASSWORD } = require('../constants/credentials')
 const moment = require('moment')
 
-describe('Customers Management - Add Functionality', async () => {
+describe.skip('Customers Management - View Details Functionality', async () => {
    let page
 
    before(async () => {
@@ -96,7 +96,7 @@ describe('Customers Management - Add Functionality', async () => {
          expect(listItem).to.not.be.null
       })
 
-      it('Should show the add new customers page when click the `View details` button', async () => {
+      it('Should show the view details page when click the `View details` button', async () => {
          dashboardRunBefore = false
          dashboardRunAfter = false
 

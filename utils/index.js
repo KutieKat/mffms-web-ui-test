@@ -34,9 +34,20 @@ const notAllEmpty = arr => {
    return true
 }
 
+const allTrue = arr => {
+   for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === false) {
+         return false
+      }
+   }
+
+   return true
+}
+
 module.exports = {
    clear,
    attr,
    notAllNull,
-   notAllEmpty
+   notAllEmpty,
+   allTrue
 }

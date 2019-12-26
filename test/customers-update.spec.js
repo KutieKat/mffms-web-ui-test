@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { clear, attr, notAllNull, notAllEmpty } = require('../utils')
+const { clear, attr, notAllNull, notAllEmpty, allTrue } = require('../utils')
 const { USERNAME, PASSWORD } = require('../constants/credentials')
 const moment = require('moment')
 
@@ -79,7 +79,7 @@ describe('Customers Management - Update Functionality', async () => {
          }
       })
 
-      it('Should display the `View details` item inside any results list menu item', async () => {
+      it('Should display the `Update` item inside any results list menu item', async () => {
          dashboardRunBefore = false
          dashboardRunAfter = false
 
@@ -90,13 +90,13 @@ describe('Customers Management - Update Functionality', async () => {
          )
          await toggler.hover()
          const listItem = await page.waitFor(
-            'tr:nth-child(2) .table-dropdown-menu-item:nth-child(1) > a'
+            'tr:nth-child(1) .table-dropdown-menu-item:nth-child(2) > a'
          )
 
          expect(listItem).to.not.be.null
       })
 
-      it('Should show the add new customers page when click the `View details` button', async () => {
+      it('Should show the update customers information page when click the `Update` button', async () => {
          dashboardRunBefore = false
          dashboardRunAfter = false
 
@@ -107,7 +107,7 @@ describe('Customers Management - Update Functionality', async () => {
          )
          await toggler.hover()
          const listItem = await page.waitFor(
-            'tr:nth-child(1) .table-dropdown-menu-item:nth-child(1) > a'
+            'tr:nth-child(1) .table-dropdown-menu-item:nth-child(2) > a'
          )
          await listItem.click()
          await page.waitFor(5000)
@@ -116,7 +116,7 @@ describe('Customers Management - Update Functionality', async () => {
          expect(pageTitle).to.equal('Cập nhật thông tin khách hàng')
       })
 
-      it('Should have essential elements for the view details page', async () => {
+      it('Should have essential elements for the update page', async () => {
          dashboardRunBefore = true
          dashboardRunAfter = false
 
@@ -179,33 +179,35 @@ describe('Customers Management - Update Functionality', async () => {
          expect(allTrue([idElem.getProperty('disabled')])).to.be.true
       })
 
-      it('Should refresh when click the `Refresh` button', async () => {
-         const refreshButton = await page.waitFor('.button:nth-child(1)')
-         await refreshButton.click()
-         await page.waitFor(3000)
-
-         const pageTitle = await attr(page, '.breadcrumb-active a', 'innerText')
-         expect(pageTitle).to.equal('Cập nhật thông tin khách hàng')
-      })
-
-      it('Should back to the list page when click the `Back` button', async () => {
-         dashboardRunBefore = false
-         dashboardRunAfter = false
-
-         const backButton = await page.waitFor('.button:nth-child(1)')
-         await backButton.click()
-         await page.waitFor(3000)
-
-         const pageTitle = await attr(page, '.breadcrumb-active a', 'innerText')
-         expect(pageTitle).to.equal('Xem thông tin khách hàng')
-      })
-
       describe('The name field', async () => {
+         before(async () => {
+            const nameElem = await page.waitFor(
+               '.form-group:nth-child(2) > input'
+            )
+            const gendersElem = await page.waitFor('.form-group:nth-child(3)')
+            const dobElem = await page.waitFor(
+               '.form-group:nth-child(4) > input'
+            )
+            const phoneElem = await page.waitFor(
+               '.form-group:nth-child(5) > input'
+            )
+            const addressElem = await page.waitFor(
+               '.form-group:nth-child(6) > textarea'
+            )
+
+            await clear(nameElem)
+            await clear(gendersElem)
+            await clear(dobElem)
+            await clear(phoneElem)
+            await clear(addressElem)
+         })
+
          it('Should show errors when provide an invalid value (blank) for the name field', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
+            await clear(nameElem)
             await nameElem.type('')
 
             const submitButtonElem = await page.waitFor(
@@ -215,7 +217,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(1) > input',
+               '.form-group:nth-child(2) > input',
                'className'
             )
 
@@ -226,7 +228,7 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             await nameElem.focus()
             await clear(nameElem)
             await nameElem.type('0902123456')
@@ -238,7 +240,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(1) > input',
+               '.form-group:nth-child(2) > input',
                'className'
             )
 
@@ -249,7 +251,7 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             await nameElem.focus()
             await clear(nameElem)
             await nameElem.type('~!@#$%^&*()')
@@ -261,7 +263,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(1) > input',
+               '.form-group:nth-child(2) > input',
                'className'
             )
 
@@ -273,11 +275,11 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunAfter = false
 
             const alertedNameElem = await page.$(
-               '.form-group:nth-child(1) > input'
+               '.form-group:nth-child(2) > input'
             )
             await alertedNameElem.focus()
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             await clear(nameElem)
             await nameElem.type('Nguyễn Tiến Dũng')
 
@@ -288,7 +290,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(1) > input',
+               '.form-group:nth-child(2) > input',
                'className'
             )
 
@@ -304,7 +306,8 @@ describe('Customers Management - Update Functionality', async () => {
             const nameElem = await page.$('.form-group:nth-child(1) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$('.form-group:nth-child(4) > input')
+            const phoneElem = await page.$('.form-group:nth-child(5) > input')
+            await clear(phoneElem)
             await phoneElem.type('')
 
             const submitButtonElem = await page.waitFor(
@@ -314,7 +317,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(4) > input',
+               '.form-group:nth-child(5) > input',
                'className'
             )
 
@@ -325,10 +328,11 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$('.form-group:nth-child(4) > input')
+            const phoneElem = await page.$('.form-group:nth-child(5) > input')
+            await clear(phoneElem)
             await phoneElem.type('Nguyễn Tiến Dũng')
 
             const submitButtonElem = await page.waitFor(
@@ -338,7 +342,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(4) > input',
+               '.form-group:nth-child(5) > input',
                'className'
             )
 
@@ -349,10 +353,10 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$('.form-group:nth-child(4) > input')
+            const phoneElem = await page.$('.form-group:nth-child(5) > input')
             await clear(phoneElem)
             await phoneElem.type('~!@#$%^&*()')
 
@@ -363,7 +367,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(4) > input',
+               '.form-group:nth-child(5) > input',
                'className'
             )
 
@@ -374,10 +378,10 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$('.form-group:nth-child(4) > input')
+            const phoneElem = await page.$('.form-group:nth-child(5) > input')
             await clear(phoneElem)
             await phoneElem.type('0123456789')
 
@@ -388,7 +392,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(4) > input',
+               '.form-group:nth-child(5) > input',
                'className'
             )
 
@@ -399,10 +403,10 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$('.form-group:nth-child(4) > input')
+            const phoneElem = await page.$('.form-group:nth-child(5) > input')
             await clear(phoneElem)
             await phoneElem.type('090212345')
 
@@ -413,7 +417,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(4) > input',
+               '.form-group:nth-child(5) > input',
                'className'
             )
 
@@ -424,10 +428,10 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$('.form-group:nth-child(4) > input')
+            const phoneElem = await page.$('.form-group:nth-child(5) > input')
             await clear(phoneElem)
             await phoneElem.type('0902123456')
 
@@ -438,7 +442,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(4) > input',
+               '.form-group:nth-child(5) > input',
                'className'
             )
 
@@ -451,20 +455,21 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$(
-               '.form-group:nth-child(5) > textarea'
+            const addressElem = await page.$(
+               '.form-group:nth-child(6) > textarea'
             )
-            await phoneElem.type('')
+            await clear(addressElem)
+            await addressElem.type('')
 
             const submitButtonElem = await page.$('.button-primary')
             await submitButtonElem.click()
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(5) > textarea',
+               '.form-group:nth-child(6) > textarea',
                'className'
             )
 
@@ -475,20 +480,21 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
-            const phoneElem = await page.$(
-               '.form-group:nth-child(5) > textarea'
+            const addressElem = await page.$(
+               '.form-group:nth-child(6) > textarea'
             )
-            await phoneElem.type('Thủ Đức, Thành phố Hồ Chí Minh')
+            await clear(addressElem)
+            await addressElem.type('Thủ Đức, Thành phố Hồ Chí Minh')
 
             const submitButtonElem = await page.$('.button-primary')
             await submitButtonElem.click()
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(5) > textarea',
+               '.form-group:nth-child(6) > textarea',
                'className'
             )
 
@@ -501,18 +507,18 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
             await page.$eval(
-               '.form-group:nth-child(3) > input',
+               '.form-group:nth-child(4) > input',
                el => (el.value = '')
             )
 
             await page.evaluate(() => {
                document.querySelector(
-                  '.form-group:nth-child(3) > input'
-               ).value = ''
+                  '.form-group:nth-child(4) > input'
+               ).value = '2019-12-28'
             })
 
             const submitButtonElem = await page.waitFor(
@@ -523,7 +529,7 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(3) > input',
+               '.form-group:nth-child(4) > input',
                'className'
             )
 
@@ -534,15 +540,12 @@ describe('Customers Management - Update Functionality', async () => {
             dashboardRunBefore = false
             dashboardRunAfter = false
 
-            const nameElem = await page.$('.form-group:nth-child(1) > input')
+            const nameElem = await page.$('.form-group:nth-child(2) > input')
             nameElem.focus()
 
             await page.$eval(
-               '.form-group:nth-child(3) > input',
-               el =>
-                  (el.value = moment(new Date())
-                     .add(1, 'days')
-                     .format('YYYY-MM-DD'))
+               '.form-group:nth-child(4) > input',
+               el => (el.value = '')
             )
 
             const submitButtonElem = await page.waitFor(
@@ -553,12 +556,24 @@ describe('Customers Management - Update Functionality', async () => {
 
             const resultedClassName = await attr(
                page,
-               '.form-group:nth-child(3) > input',
+               '.form-group:nth-child(4) > input',
                'className'
             )
 
             expect(resultedClassName === 'form-input-alert').to.be.true
          })
       })
+
+      // it('Should back to the list page when click the `Back` button', async () => {
+      //    dashboardRunBefore = false
+      //    dashboardRunAfter = false
+
+      //    const backButton = await page.waitFor('.button:nth-child(1)')
+      //    await backButton.click()
+      //    await page.waitFor(3000)
+
+      //    const pageTitle = await attr(page, '.breadcrumb-active a', 'innerText')
+      //    expect(pageTitle).to.equal('Xem thông tin khách hàng')
+      // })
    })
 })

@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { clear, attr, notAllNull, notAllEmpty } = require('../utils')
+const { clear, attr, notAllNull, notAllEmpty, allTrue } = require('../utils')
 const { USERNAME, PASSWORD } = require('../constants/credentials')
 const moment = require('moment')
 
@@ -463,10 +463,7 @@ describe.skip('Customers Management - Add Functionality', async () => {
 
             await page.$eval(
                '.form-group:nth-child(3) > input',
-               el =>
-                  (el.value = moment(new Date())
-                     .add(1, 'days')
-                     .format('YYYY-MM-DD'))
+               el => (el.value = '2019-12-28')
             )
 
             const submitButtonElem = await page.waitFor(
