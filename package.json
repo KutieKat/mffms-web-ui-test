@@ -22,7 +22,7 @@
       "express": "^4.17.1",
       "mocha": "^6.2.2",
       "mochawesome": "^4.1.0",
-      "moment": "^2.24.0",
+      "moment": "^2.29.2",
       "node-cmd": "^3.0.0",
       "opn": "^6.0.0",
       "puppeteer": "^2.0.0"
